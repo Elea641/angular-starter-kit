@@ -1,11 +1,46 @@
 version: '3.8'
 
 services:
-  angular:
+  template_angular:
+    image: template_angular
+    ports:
+      - 80:4200
+    command: "ng serve --host 0.0.0.0 --poll=2000 --port 4200 --disable-host-check"
     build:
       context: .
-    ports:
-      - '4200:4200'
+      dockerfile: Dockerfile    
     volumes:
-      - .:/app
-      - '/app/node_modules'
+       - .:/app  
+       - /app/node_modules
+
+# version: '3.8'
+
+# services:
+#   angular:
+#     build: 
+#       context: .
+#       dockerfile: Dockerfile  
+#     ports:
+#       - "4200:4200"
+#     volumes:
+#       - .:/app  
+#       - /app/node_modules
+#     environment:
+#       - CHOKIDAR_USEPOLLING=true      
+#       - HOST=0.0.0.0
+#     command: "ng serve --host 0.0.0.0 --poll=2000 --port 4200 --disable-host-check"
+
+# version: '3.8'
+
+# services:
+#   angular:
+#     build:
+#       context: .
+#     restart: always
+#     ports:
+#       - "4200:4200"
+#     volumes:
+#       - .:/app  
+#       - /app/node_modules  
+#     command: ng serve --host 0.0.0.0
+
